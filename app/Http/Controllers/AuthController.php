@@ -16,13 +16,22 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
         if (Auth::attempt($credentials)) {
-            return redirect('/dashboard'); // Change the redirection as needed
+            $request->session()->regenerate();
+
+            return redirect('/appointments'); // Change the redirection as needed
         }
 
         return redirect()->route('login')->with('error', 'Invalid login credentials');
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
     }
 
     public function logout()
@@ -52,6 +61,7 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users|max:255',
             'password' => 'required|string|min:8|confirmed',
         ]);
+        
      // Remove spaces from the contact number before storing
      $contactNumber = str_replace(' ', '', $request->input('contact_number'));
 
@@ -71,6 +81,7 @@ class AuthController extends Controller
             'password' => bcrypt($request->input('password')),
         ]);
 
-        return redirect('/login')->with('success', 'Registration successful! Please log in.');
+        return redirect('/appointments')->with('success', 'Registration successful! Please log in.');
+        
     }
 }

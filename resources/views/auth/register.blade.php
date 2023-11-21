@@ -15,6 +15,11 @@
 
         @if(session('success'))
         <p class="text-green-500">{{ session('success') }}</p>
+        <script>
+            setTimeout(function () {
+                window.location.href = '{{ url('/appointment/index') }}'; // Replace '/dashboard' with the actual URL of your user dashboard
+            }, 3000); // Redirect after 3 seconds (adjust as needed)
+        </script>
         @endif
 
         @if($errors->any())

@@ -1,17 +1,9 @@
 <!-- resources/views/auth/login.blade.php -->
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <link
-          href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/flowbite.min.css"
-          rel="stylesheet"
-        />
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-      </head>
-<body class=" bg-gray-100 flex items-center justify-center m-0 backdrop-blur-md relative h-screen">
+@extends('layout')
+
+@section('content')
+
     <div class="min-h-screen flex items-center justify-center shadow-xl">
         <div class="bg-white p-8 rounded shadow-2xl w-96">
             <h2 class="text-3xl font-semibold mb-6 text-center">Sign in to your account</h2>
@@ -35,5 +27,6 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+@endsection
+{{-- </body>
+</html> --}}
