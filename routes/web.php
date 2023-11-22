@@ -6,6 +6,9 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\RecordsController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\Auth\LoginController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -82,7 +85,6 @@ Route::get('/admin/{record}', [RecordsController::class,'adminRecordView']);//sh
 Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments.index');
 Route::get('/appointments/create-mon', [AppointmentController::class, 'create'])->name('appointments.create-mon');
 Route::post('/appointments', [AppointmentController::class, 'store'])->name('appointments.store');
-
 // Admin Authentication Routes
 
 Route::prefix('admin')->group(function () {
@@ -92,3 +94,10 @@ Route::prefix('admin')->group(function () {
     Route::post('register', [AdminAuthController::class, 'register']);
     Route::post('logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 });
+
+
+Route::middleware(['auth.user'])->group(function () {
+    Route::get('/appointments', [AppointmentController::class, 'index']);
+});
+
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

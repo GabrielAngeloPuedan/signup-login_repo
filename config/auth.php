@@ -73,6 +73,13 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
         ],
+        
+        'guards' => [
+            'web' => [
+                'driver' => 'session',
+                'provider' => 'users',
+            ],
+        ],
 
         // 'users' => [
         //     'driver' => 'database',

@@ -10,15 +10,16 @@
 
     <div class="container">
         @yield('content')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('appointments') }}">Appointments</a>
+            
+<a href="{{ route('login') }}" class="text-green-600">Log In</a>
+<a href="{{ route('register') }}" class="text-green-600">Sign Up</a>
+        </li>
     </div>
 
     <!-- Regular User Links -->
-<a href="{{ route('login') }}">User Login</a>
-<a href="{{ route('register') }}">User Register</a>
 
-<!-- Admin Links -->
-<a href="{{ route('admin.login') }}">Admin Login</a>
-<a href="{{ route('admin.register') }}">Admin Register</a>
 
 </body>
 </html>

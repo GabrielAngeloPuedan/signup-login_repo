@@ -4,24 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AppointmentController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-  
+        // dd(Auth::user());
+        $user = Auth::user();
             $appointments = Appointment::all();
-            return view('appointment\index', ['appointments' => $appointments]);
-            
+            return view('appointments.index', ['appointments' => $appointments]);
+            // return view('appointments.index');
+            return view('appointments.index', compact('user'));
         
     }
 
   //Show Create Monday Form
   public function create() {
-    return view('appointment.create-mon');
+    return view('appointments.create-mon');
 }
 
     /**
@@ -62,16 +66,16 @@ class AppointmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    // public function update(Request $request, string $id)
+    // {
+    //     //
+    // }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
+    // public function destroy(string $id)
+    // {
+    //     //
+    // }
 }
